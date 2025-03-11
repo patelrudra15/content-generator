@@ -140,28 +140,7 @@ const Chatbot: React.FC = () => {
           Send
         </Button>
       </div>
-      <div className="mb-4">
-        <h1 className="text-4xl mb-6 text-center font-bold text-primary">Summerized</h1>
-        <textarea
-          value={contentToSummarize}
-          onChange={(e) => setContentToSummarize(e.target.value)}
-          className="w-full p-3 border border-gray-600 rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-200 bg-gray-700 mb-4"
-          placeholder="Paste content to summarize..."
-          rows={5}
-        />
-        <Button
-          onClick={handleSummarize}
-          className="bg-primary text-white p-3 rounded-sm hover:bg-slate-400 transition-colors mb-10"
-        >
-          Summarize
-        </Button>
-      </div>
-      {summary && (
-        <div className="p-4 border border-gray-600 rounded-lg bg-gray-800 text-white">
-          <h3 className="text-lg font-bold">Summary:</h3>
-          <p>{summary}</p>
-        </div>
-      )}
+      
     </motion.div>
   );
 };
