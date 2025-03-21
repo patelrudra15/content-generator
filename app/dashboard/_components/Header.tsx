@@ -22,8 +22,8 @@ const MenuList = [
     path: 'dashboard/settings',
   },
   {
-    name: 'Feedback',
-    path: 'dashboard/feedback',
+    name: 'contact',
+    path: 'dashboard/contact',
   },
   
 ];
