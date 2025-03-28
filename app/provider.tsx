@@ -18,20 +18,24 @@ function Provider({ children }: ProviderProps) {
     user&&isNewUser();
   },[user]);
 
-  const isNewUser=async()=>{
-    const result=await db.select().from(Users)
-    .where(eq(Users.email,user?.primaryEmailAddress?.emailAddress));
-
+  const isNewUser = async () => {
+    if (!user || !user.primaryEmailAddress?.emailAddress) return; // Ensure user and email exist
+  
+    const userEmail = user.primaryEmailAddress.emailAddress;
+  
+    const result = await db.select().from(Users).where(eq(Users.email, userEmail));
+  
     console.log(result);
-    if(!result[0])
-    {
+    
+    if (!result.length) { // Check if user already exists
       await db.insert(Users).values({
-        name:user.fullName,
-        email:user?.primaryEmailAddress?.emailAddress,
-        imageUrl:user?.imageUrl
-      })
+        name: user.fullName || "", // Ensure non-null values
+        email: userEmail,
+        imageUrl: user.imageUrl || "", // Provide fallback values if necessary
+      });
     }
-  }
+  };
+  
   return (
     <div>
       <Header/>
